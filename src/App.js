@@ -1,9 +1,15 @@
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import MiApi from "./components/MiApi";
+
+
 
 function App() {
   return (
     <div>
-      Hola
-
+      <Header/>
+      <MiApi/>
+      <Footer/>
     </div>
   );
 }
