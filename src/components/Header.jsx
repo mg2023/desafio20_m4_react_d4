@@ -1,18 +1,22 @@
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
 function Header() {
-    return (
-        <header className="container">
-            <div className="row">
-                <div className="col">
-                </div>
-                <div className="col-6">
-                <p className="fs-1 p-3 mb-2 bg-info text-dark">Facebuks</p>
-                </div>
-                <div className="col">
-                </div>
-            </div>    
-        </header>
-    )
+  return (
+    <>
+      <Navbar bg="light" variant="light">
+        <Container>
+          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="#pricing">Pricing</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+    </>
+  );
 }
 
-export default Header
+export default Header;
