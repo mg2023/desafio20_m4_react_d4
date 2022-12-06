@@ -15,7 +15,6 @@ function MiApi() {
         const response = await fetch(url)
         const data = await response.json()
         setCatProductos(data);
-        console.log(data)        
     }
 
     return (

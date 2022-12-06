@@ -44,8 +44,6 @@ function AllProducts() {
     }
 
     const ordenardeAaZ = () => {
-
-        console.log("Ordenando de A a Z")
         const temporal = [...tablaProductos].sort((a, b) => 
          {
             const nameA = a.title.toUpperCase(); // ignore upper and lowercase
@@ -65,8 +63,6 @@ function AllProducts() {
     }
 
     const ordenardeZaA = () => {
-
-        console.log("Ordenando de A a Z")
         const temporal = [...tablaProductos].sort((a, b) => 
          {
             const nameA = a.title.toUpperCase(); // ignore upper and lowercase
@@ -85,7 +81,6 @@ function AllProducts() {
     }
 
     const clearOrdenar = () => {
-        console.log("Clear ordenar")
         consultarProductos();
     }
 
