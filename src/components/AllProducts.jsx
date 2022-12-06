@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function MiApi() {
+function AllProducts() {
     // 3. info guardará los valores traídos desde la API
     const [info, setInfo] = useState([]);
 
@@ -10,7 +10,7 @@ function MiApi() {
     }, []);
     // 1. Función que consulta la API
     const consultarInformacion = async () => {
-        const url = 'https://dummyjson.com/products/categories';
+        const url = 'https://dummyjson.com/products?limit=10&skip=10&select=title,price';
         const response = await fetch(url)
         const data = await response.json()
         console.log(data)
@@ -26,5 +26,4 @@ function MiApi() {
         </div>
     );
 }
-export default MiApi;
-
+export default AllProducts
