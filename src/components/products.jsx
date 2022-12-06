@@ -4,6 +4,9 @@ import Card from 'react-bootstrap/Card';
 
 function Products(props) {
     return (
+        // <div>
+        //     Hola
+        // </div>
         <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={props.image} />
             <Card.Body>
