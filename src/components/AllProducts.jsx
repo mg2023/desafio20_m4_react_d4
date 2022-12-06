@@ -49,16 +49,16 @@ function AllProducts() {
     return (
         <div>
             {/* { 4. Mostramos la info } */}
-            <h2>Productos</h2>
+            <h2>Products</h2>
             <div className="input-group mb-3 mt-3">
                 {/* <label for="exampleInputName" class="form-label"></label> */}
                 <input type="search" className="form-control" id="exampleInputName"
-                    placeholder="Busca por titulo o categoria"
+                    placeholder="Search by title or category"
                     name="busqueda"
                     onChange={handleChange}
                     value={busqueda}
                 ></input>
-                <button type="submit" className="btn btn-primary">Buscar</button>
+                <button type="submit" className="btn btn-primary">Search</button>
             </div>
             <div className="container text-center p-3">
                 <div className="row">
@@ -70,10 +70,6 @@ function AllProducts() {
                     </div>
                 </div>
             </div>
-
-            
-            
-
 
             {productos.length > 0 ?
                 <table className="table table-sm table-bordered">
@@ -96,7 +92,7 @@ function AllProducts() {
                                 <td>{producto.stock}</td>
                                 <td>{producto.category}</td>
                                 <td>{producto.rating}</td>
-                                <td><Button variant="primary">Buy</Button></td>
+                                <td><Button variant="primary">Buy now</Button></td>
                             </tr>
                         ))
                         }
@@ -104,7 +100,7 @@ function AllProducts() {
                     </tbody>
                 </table>
                 :
-                <h3>El producto o categoría no ha sido encontrado </h3>
+                <h3>The product or category has not been found</h3>
             }
         </div>
     );

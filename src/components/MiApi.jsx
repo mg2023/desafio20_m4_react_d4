@@ -17,11 +17,11 @@ function MiApi() {
         setCatProductos(data);
         console.log(data)        
     }
-    
+
     return (
         <div>
             {/* { 4. Mostramos la info } */}
-            <h2>Categoria</h2>
+            <h2>Categories</h2>
             <ul className="list-group">
                 {catProductos.map(categoria => <li className="list-group-item" key={categoria}>{categoria} </li>)}
             </ul>
