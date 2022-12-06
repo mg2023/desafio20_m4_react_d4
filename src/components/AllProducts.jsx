@@ -6,7 +6,7 @@ function AllProducts() {
     const [productos, setProductos] = useState([]);
     const [tablaProductos, setTablaProductos] = useState([]);
     const [busqueda, setBusqueda] = useState("");
-
+   
     const handleChange = (e) => {
         setBusqueda(e.target.value);
         filtrar(e.target.value);
@@ -26,7 +26,7 @@ function AllProducts() {
     // 2. LLamamos al función que consume la API al momento de montar el    componente
     useEffect(() => {
         consultarProductos();
-    }, []);
+     }, []);
 
     // 1. Función que consulta la API
     const consultarProductos = async () => {
@@ -40,10 +40,48 @@ function AllProducts() {
 
     const ordenardeAaZ = () => {
         console.log("Ordenando de A a Z")
+        tablaProductos.sort((a,b) => {
+            const nameA = a.title.toUpperCase(); // ignore upper and lowercase
+            const nameB = b.title.toUpperCase(); // ignore upper and lowercase
+            if (nameA > nameB) {
+              return 1;
+            }
+            if (nameA < nameB) {
+              return -1;
+            }
+          
+            // names must be equal
+            return 0;
+          }          
+        )
+        setProductos(tablaProductos)
+        console.log(tablaProductos)
     }
 
     const ordenardeZaA = () => {
         console.log("Ordenando de Z a A")
+        tablaProductos.sort((a,b) => {
+            const nameA = a.title.toUpperCase(); // ignore upper and lowercase
+            const nameB = b.title.toUpperCase(); // ignore upper and lowercase
+            if (nameA > nameB) {
+              return -1;
+            }
+            if (nameA < nameB) {
+              return 1;
+            }
+          
+            // names must be equal
+            return 0;
+          } 
+        )
+        setProductos(tablaProductos)
+        console.log(tablaProductos)
+    }
+
+    const clearOrdenar = () => {
+        console.log("Clear ordenar")        
+        consultarProductos();
+        console.log(productos)
     }
 
     return (
@@ -58,15 +96,17 @@ function AllProducts() {
                     onChange={handleChange}
                     value={busqueda}
                 ></input>
-                <button type="submit" className="btn btn-primary">Search</button>
             </div>
             <div className="container text-center p-3">
                 <div className="row">
                     <div className="col">
-                    <button type="submit" className="btn btn-primary" onClick={ordenardeAaZ}> A --> Z </button>
+                        <button type="submit" className="btn btn-primary" onClick={ordenardeAaZ}> Sort A --> Z </button>
                     </div>
                     <div className="col">
-                    <button type="submit" className="btn btn-primary" onClick={ordenardeZaA} >Z --> A</button>
+                        <button type="submit" className="btn btn-primary" onClick={ordenardeZaA} >Sort Z --> A</button>
+                    </div>
+                    <div className="col">
+                        <button type="submit" className="btn btn-primary" onClick={clearOrdenar} >Clean filter</button>
                     </div>
                 </div>
             </div>
