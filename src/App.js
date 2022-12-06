@@ -2,33 +2,32 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import MiApi from "./components/MiApi";
 import Products from "./components/products";
-
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
-
+import AllProducts from "./components/AllProducts";
 
 function App() {
   return (
     <Container>
       <Header />
-
-      <Row>
-        <Col xs lg="2"><MiApi /></Col>
-        <Col><Products title="iPhone 9" descrip="An apple mobile which is nothing like apple" image="https://i.dummyjson.com/data/products/1/1.jpg" /></Col>
-        <Col><Products title="Women Shoulder Bags" descrip="LouisWill Women Shoulder Bags Long Clutches Cross Body Bags Phone Bags PU Leather Hand Bags Large Capacity Card Holders Zipper Coin Purses Fashion Crossbody Bags for Girls Ladies"
-          image="https://i.dummyjson.com/data/products/71/1.jpg" /></Col>
-        <Col><Products title="Bluetooth Aux" descrip="Bluetooth Aux Bluetooth Car Aux Car Bluetooth Transmitter Aux Audio Receiver Handfree Car 
-      Bluetooth Music Receiver Universal 3.5mm Streaming A2DP Wireless Auto AUX Audio Adapter With Mic For Phone MP3"
-          image="https://i.dummyjson.com/data/products/86/1.jpg" /></Col>
+      <Row >
+        <Col className="sidebar" xs lg="2"><MiApi /></Col>
+        <Col className="body">
+          <Row>
+            <Col><Products title="iPhone 9" descrip="An apple mobile which is nothing like apple" image="https://i.dummyjson.com/data/products/1/thumbnail.jpg" /></Col>
+            <Col><Products title="HP Pavilion 15-DK1056WM" descrip="HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10"
+              image="https://i.dummyjson.com/data/products/10/thumbnail.jpeg" /></Col>
+            <Col><Products title="Brown Perfume" descrip="Royal_Mirage Sport Brown Perfume for Men & Women - 120ml"
+              image="https://i.dummyjson.com/data/products/12/thumbnail.jpg" /></Col>
+          </Row>
+          <Row>
+            <AllProducts />
+          </Row>
+        </Col>
       </Row>
-
-
-
       <Footer />
     </Container>
-
   );
 }
 

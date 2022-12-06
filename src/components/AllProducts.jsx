@@ -2,28 +2,33 @@ import { useState, useEffect } from "react";
 
 function AllProducts() {
     // 3. info guardará los valores traídos desde la API
-    const [info, setInfo] = useState([]);
+    // const [productos, setProductos] = useState([]);
+    const [tablaProductos, setTablaProductos] = useState([]);
 
     // 2. LLamamos al función que consume la API al momento de montar el    componente
     useEffect(() => {
-        consultarInformacion();
-    }, []);
+        consultarProductos();
+      }, []);
+
+
     // 1. Función que consulta la API
-    const consultarInformacion = async () => {
-        const url = 'https://dummyjson.com/products?limit=10&skip=10&select=title,price';
+    const consultarProductos = async () => {
+        const url = 'https://dummyjson.com/products?limit=10&select=title,price,thumbnail,category';
         const response = await fetch(url)
         const data = await response.json()
-        console.log(data)
-        setInfo(data); // con setInfo    actualizamos el estado
+        setTablaProductos(data.products);
+        console.log(data.products)
     }
+
     return (
         <div>
-            {/* { 4. Mostramos la info } */}       
-                <h2>Categoria</h2>
-              <ul className="list-group">
-                {info.map(categoria => <li className="list-group-item" key={categoria}> {categoria} </li> )  }
+            {/* { 4. Mostramos la info } */}   
+                <h2>Productos</h2>
+                 <ul className="list-group">
+                
+                {tablaProductos.map(x => <li className="list-group-item" key={x.id}>Catergoria es {x.category} </li> )  } 
               </ul>
         </div>
     );
 }
-export default AllProducts
+export default AllProducts;
