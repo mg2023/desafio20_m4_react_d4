@@ -5,14 +5,17 @@ function AllProducts() {
     // 3. info guardará los valores traídos desde la API
     const [productos, setProductos] = useState([]);
     const [tablaProductos, setTablaProductos] = useState([]);
-    const [busqueda, setBusqueda] = useState("");
-   
-    const handleChange = (e) => {
-        setBusqueda(e.target.value);
-        filtrar(e.target.value);
+    // const [busqueda, setBusqueda] = useState("");
+
+    const buscarProductos = (e) => {
+        filtrarProductos(e.target.value);
     }
 
-    const filtrar = (terminoBusqueda) => {
+    // const ordenarProductos = (e) => {
+    //     ordenardeAaZ()        
+    // }
+
+    const filtrarProductos = (terminoBusqueda) => {
         let resultadosBusqueda = tablaProductos.filter((elemento) => {
             if (elemento.title.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
                 || elemento.category.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
@@ -20,13 +23,16 @@ function AllProducts() {
                 return elemento;
             }
         });
+  
+  
         setProductos(resultadosBusqueda);
+        
     }
 
     // 2. LLamamos al función que consume la API al momento de montar el    componente
     useEffect(() => {
         consultarProductos();
-     }, []);
+    }, []);
 
     // 1. Función que consulta la API
     const consultarProductos = async () => {
@@ -35,53 +41,52 @@ function AllProducts() {
         const data = await response.json()
         setProductos(data.products);
         setTablaProductos(data.products);
-        console.log(data.products)
     }
 
     const ordenardeAaZ = () => {
+
         console.log("Ordenando de A a Z")
-        tablaProductos.sort((a,b) => {
+        const temporal = [...tablaProductos].sort((a, b) => 
+         {
             const nameA = a.title.toUpperCase(); // ignore upper and lowercase
             const nameB = b.title.toUpperCase(); // ignore upper and lowercase
             if (nameA > nameB) {
-              return 1;
+                return 1;
             }
             if (nameA < nameB) {
-              return -1;
+                return -1;
             }
-          
             // names must be equal
             return 0;
-          }          
+        }
         )
-        setProductos(tablaProductos)
-        console.log(tablaProductos)
+       
+        setProductos(temporal)        
     }
 
     const ordenardeZaA = () => {
-        console.log("Ordenando de Z a A")
-        tablaProductos.sort((a,b) => {
+
+        console.log("Ordenando de A a Z")
+        const temporal = [...tablaProductos].sort((a, b) => 
+         {
             const nameA = a.title.toUpperCase(); // ignore upper and lowercase
             const nameB = b.title.toUpperCase(); // ignore upper and lowercase
             if (nameA > nameB) {
-              return -1;
+                return -1;
             }
             if (nameA < nameB) {
-              return 1;
+                return 1;
             }
-          
             // names must be equal
             return 0;
-          } 
-        )
-        setProductos(tablaProductos)
-        console.log(tablaProductos)
+        }
+        )       
+        setProductos(temporal)        
     }
 
     const clearOrdenar = () => {
-        console.log("Clear ordenar")        
+        console.log("Clear ordenar")
         consultarProductos();
-        console.log(productos)
     }
 
     return (
@@ -93,8 +98,8 @@ function AllProducts() {
                 <input type="search" className="form-control" id="exampleInputName"
                     placeholder="Search by title or category"
                     name="busqueda"
-                    onChange={handleChange}
-                    value={busqueda}
+                    onChange={buscarProductos}
+                    // value={busqueda}
                 ></input>
             </div>
             <div className="container text-center p-3">
@@ -112,6 +117,7 @@ function AllProducts() {
             </div>
 
             {productos.length > 0 ?
+
                 <table className="table table-sm table-bordered">
                     <thead>
                         <tr>
