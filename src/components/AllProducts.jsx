@@ -9,20 +9,19 @@ function AllProducts() {
 
     const handleChange = (e) => {
         setBusqueda(e.target.value);
-        // filtrar(e.target.value);
+        filtrar(e.target.value);    }
+
+
+    const filtrar = (terminoBusqueda) => {
+        let resultadosBusqueda = tablaProductos.filter((elemento) => {
+            if (elemento.title.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
+                || elemento.category.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
+            ) {
+                return elemento;
+            }
+        });
+        setProductos(resultadosBusqueda);
     }
-
-
-    // const filtrar = (terminoBusqueda) => {
-    //     var resultadosBusqueda = tablaProductos.filter((elemento) => {
-    //         if (elemento.title.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
-    //             || elemento.category.name.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
-    //         ) {
-    //             return elemento;
-    //         }
-    //     });
-    //     setProductos(resultadosBusqueda);
-    // }
 
     // 2. LLamamos al función que consume la API al momento de montar el    componente
     useEffect(() => {
@@ -44,18 +43,6 @@ function AllProducts() {
         <div>
             {/* { 4. Mostramos la info } */}
             <h2>Productos</h2>
-            {/* <div className="containerInput">
-                <input
-                    className="form-control"
-                    value={busqueda}
-                    placeholder="Búsqueda por titulo o categoria"
-                    onChange={handleChange}
-                />
-                <button className="btn btn-success">
-                     Buscar
-                </button>
-            </div> */}
-
             <div className="input-group mb-3 mt-3">
                 {/* <label for="exampleInputName" class="form-label"></label> */}
                 <input type="search" className="form-control" id="exampleInputName"
@@ -67,6 +54,7 @@ function AllProducts() {
                 <button type="submit" className="btn btn-primary">Buscar</button>
               </div>
 
+            { productos.length > 0?
             <table className="table table-sm table-bordered">
                 <thead>
                     <tr>
@@ -80,8 +68,7 @@ function AllProducts() {
                     </tr>
                 </thead>
                 <tbody>
-                    {productos &&
-                        productos.map((producto) => (
+                    {productos.map((producto) => (
                             <tr key={producto.id}>
                                 <td>{producto.title}</td>
                                 <td>{producto.price}</td>
@@ -90,9 +77,14 @@ function AllProducts() {
                                 <td>{producto.rating}</td>
                                 <td><Button variant="primary">Buy</Button></td>
                             </tr>
-                        ))}
+                        ))
+                    }
+                       
                 </tbody>
             </table>
+            :
+            <h3>El producto o categoría no ha sido encontrado </h3>
+            }
         </div>
     );
 }
