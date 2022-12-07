@@ -9,9 +9,12 @@ import AllProducts from "./components/AllProducts";
 
 function App() {
   return (
+    // Punto 1: quitar archivos innecesarios
+    // Punto 2: landing page
     <Container>
       <Header />
       <Row >
+        {/* Punto 3: crear componente MiApi  e importarlo en App.jsx */}
         <Col className="sidebar" xs lg="2"><MiApi /></Col>
         <Col className="body">
           <Row>

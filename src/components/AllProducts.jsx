@@ -2,19 +2,16 @@ import Button from 'react-bootstrap/Button';
 import { useState, useEffect } from "react";
 
 function AllProducts() {
-    // 3. info guardará los valores traídos desde la API
     const [productos, setProductos] = useState([]);
     const [tablaProductos, setTablaProductos] = useState([]);
-    // const [busqueda, setBusqueda] = useState("");
 
     const buscarProductos = (e) => {
         filtrarProductos(e.target.value);
     }
 
-    // const ordenarProductos = (e) => {
-    //     ordenardeAaZ()        
-    // }
-
+    // Punto 5: Crea un input llamado búsqueda que filtre por alguno de los resultados de la API. Por
+    // ejemplo nombre, precio o cualquier otro tipo de criterio coherente con el resultado de
+    // la API
     const filtrarProductos = (terminoBusqueda) => {
         let resultadosBusqueda = tablaProductos.filter((elemento) => {
             if (elemento.title.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
@@ -23,18 +20,14 @@ function AllProducts() {
                 return elemento;
             }
         });
-  
-  
+
         setProductos(resultadosBusqueda);
-        
     }
 
-    // 2. LLamamos al función que consume la API al momento de montar el    componente
     useEffect(() => {
         consultarProductos();
     }, []);
 
-    // 1. Función que consulta la API
     const consultarProductos = async () => {
         const url = 'https://dummyjson.com/products?limit=30&select=title,price,stock,category,rating';
         const response = await fetch(url)
@@ -43,9 +36,12 @@ function AllProducts() {
         setTablaProductos(data.products);
     }
 
+    // Punto 6:Ordena los resultados por algún criterio que estimes conveniente, puede ser
+    // alfabéticamente, de menor a mayor, etc. Investiga el método sort y reverse de los
+    // arrays
+
     const ordenardeAaZ = () => {
-        const temporal = [...tablaProductos].sort((a, b) => 
-         {
+        const temporal = [...tablaProductos].sort((a, b) => {
             const nameA = a.title.toUpperCase(); // ignore upper and lowercase
             const nameB = b.title.toUpperCase(); // ignore upper and lowercase
             if (nameA > nameB) {
@@ -58,13 +54,12 @@ function AllProducts() {
             return 0;
         }
         )
-       
-        setProductos(temporal)        
+
+        setProductos(temporal)
     }
 
     const ordenardeZaA = () => {
-        const temporal = [...tablaProductos].sort((a, b) => 
-         {
+        const temporal = [...tablaProductos].sort((a, b) => {
             const nameA = a.title.toUpperCase(); // ignore upper and lowercase
             const nameB = b.title.toUpperCase(); // ignore upper and lowercase
             if (nameA > nameB) {
@@ -76,8 +71,8 @@ function AllProducts() {
             // names must be equal
             return 0;
         }
-        )       
-        setProductos(temporal)        
+        )
+        setProductos(temporal)
     }
 
     const clearOrdenar = () => {
@@ -94,7 +89,7 @@ function AllProducts() {
                     placeholder="Search by title or category"
                     name="busqueda"
                     onChange={buscarProductos}
-                    // value={busqueda}
+                // value={busqueda}
                 ></input>
             </div>
             <div className="container text-center p-3">

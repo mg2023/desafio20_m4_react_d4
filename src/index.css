@@ -13,22 +13,6 @@ code {
 }
 
 footer {
-  /* Posicionar abajo */
-  /* position: absolute;
-  bottom: 0; */
-  /* Ocupar todo el ancho disponible */
   width: 100%;
   min-height: 18vh;
-  /* Solo para probar cómo se ve */
-  /* background: #ccc; */
 }
-
-/* .card-style {
-  width: 500px;    
-  background-color: rgb(81, 67, 67);
-  opacity: .9;
-
-  font-size: 16px;
-  border: 1px solid rgb(145, 137, 137);
-  border-radius: 20px; 
-} */
